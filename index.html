@@ -72,7 +72,6 @@ tailwind.config = {
       <li><a class="nav-link hover:text-white" href="#skills">Skills</a></li>
       <li><a class="nav-link hover:text-white" href="#projects">Projects</a></li>
       <li><a class="nav-link hover:text-white" href="#experience">Experience</a></li>
-      <li><a class="nav-link hover:text-white" href="#contact">Contact</a></li>
     </ul>
     <button id="menuBtn" class="md:hidden p-2 -mr-2 text-slate-300" aria-label="메뉴 열기"><i data-lucide="menu" class="w-5 h-5"></i></button>
   </nav>
@@ -80,7 +79,6 @@ tailwind.config = {
     <ul class="px-5 py-4 flex flex-col gap-4 text-sm">
       <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </header>
@@ -110,9 +108,9 @@ tailwind.config = {
       <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent-deep hover:bg-accent text-white text-sm font-medium transition">
         프로젝트 보기 <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
       </a>
-      <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-ink-600 hover:border-accent-soft text-slate-200 text-sm font-medium transition">
-        연락하기 <i data-lucide="mail" class="w-4 h-4"></i>
-      </a>
+      <button id="copyBtn" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-ink-600 hover:border-accent-soft text-slate-200 text-sm font-medium transition">
+        <span>이메일 복사</span> <i data-lucide="mail" class="w-4 h-4"></i>
+      </button>
       <a href="https://github.com/HwangJae-won" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-slate-400 hover:text-white text-sm transition">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg> GitHub
       </a>
@@ -200,51 +198,11 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-24 sm:py-32 border-t border-ink-800 relative overflow-hidden">
-  <div class="absolute inset-0 glow opacity-70"></div>
-  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
-    <div class="reveal">
-      <p class="font-mono text-xs text-accent-soft mb-3">05 — Contact</p>
-      <h2 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight leading-tight">함께 풀 문제가<br>있다면 연락주세요.</h2>
-      <p class="mt-5 text-slate-400">AI Agent · LLM 엔지니어링 · 데이터 사이언스 포지션을 찾고 있습니다.</p>
-
-      <div class="mt-8 flex items-center gap-2 p-2 pl-4 rounded-xl border border-ink-600 bg-ink-900 max-w-md">
-        <i data-lucide="mail" class="w-4 h-4 text-slate-500 shrink-0"></i>
-        <span id="emailText" class="font-mono text-sm text-slate-200 truncate flex-1"></span>
-        <button id="copyBtn" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-accent-deep hover:bg-accent text-white text-xs font-medium transition shrink-0">
-          <i data-lucide="copy" class="w-3.5 h-3.5"></i><span>복사</span>
-        </button>
-      </div>
-
-      <div class="mt-6 flex gap-3">
-        <a href="https://github.com/HwangJae-won" target="_blank" rel="noopener" aria-label="GitHub" class="w-11 h-11 grid place-items-center rounded-lg border border-ink-600 hover:border-accent-soft hover:text-white transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
-        <a id="mailIcon" href="#" aria-label="Email" class="w-11 h-11 grid place-items-center rounded-lg border border-ink-600 hover:border-accent-soft hover:text-white transition"><i data-lucide="at-sign" class="w-5 h-5"></i></a>
-      </div>
-    </div>
-
-    <form id="msgForm" class="reveal card rounded-2xl p-6 sm:p-8 space-y-4 hover:transform-none" data-delay="1">
-      <h3 class="text-white font-medium">메시지 남기기</h3>
-      <div class="grid sm:grid-cols-2 gap-4">
-        <label class="block"><span class="text-xs text-slate-500">이름 / 회사</span>
-          <input name="name" required class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white" placeholder="홍길동 / OO기업"></label>
-        <label class="block"><span class="text-xs text-slate-500">회신 받을 이메일</span>
-          <input name="from" type="email" required class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white" placeholder="you@company.com"></label>
-      </div>
-      <label class="block"><span class="text-xs text-slate-500">메시지</span>
-        <textarea name="msg" required rows="5" class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white resize-none" placeholder="포지션, 협업 제안 등 자유롭게 남겨주세요."></textarea></label>
-      <button class="w-full inline-flex justify-center items-center gap-2 px-5 py-3 rounded-lg bg-white text-ink-950 hover:bg-slate-200 text-sm font-semibold transition">
-        메일로 보내기 <i data-lucide="send" class="w-4 h-4"></i>
-      </button>
-      <p id="formNote" class="text-xs text-slate-500 hidden"></p>
-    </form>
-  </div>
-</section>
 </main>
 
 <footer class="border-t border-ink-800 py-8">
   <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row gap-2 justify-between text-xs text-slate-600 font-mono">
-    <span>© 2026 Hwang Jaewon</span>
+    <span>© 2026 Hwang Jaewon · <span id="emailText"></span></span>
     <span>Built with HTML · Tailwind · Lucide</span>
   </div>
 </footer>
@@ -398,21 +356,11 @@ modal.addEventListener('click', e => { if (e.target === modal) modal.close(); })
 
 /* ---------- contact ---------- */
 emailText.textContent = EMAIL;
-mailIcon.href = 'mailto:' + EMAIL;
 copyBtn.addEventListener('click', async () => {
   const label = copyBtn.querySelector('span');
   try { await navigator.clipboard.writeText(EMAIL); label.textContent = '복사됨!'; }
-  catch { const r = document.createRange(); r.selectNodeContents(emailText); getSelection().removeAllRanges(); getSelection().addRange(r); label.textContent = '선택됨'; }
-  setTimeout(() => label.textContent = '복사', 1800);
-});
-msgForm.addEventListener('submit', e => {
-  e.preventDefault();
-  const f = new FormData(msgForm);
-  const subject = `[포트폴리오 문의] ${f.get('name')}`;
-  const body = `${f.get('msg')}\n\n— ${f.get('name')} (${f.get('from')})`;
-  formNote.innerHTML = `메일 앱이 열리지 않으면 <span class="text-slate-300 font-mono">${EMAIL}</span> 로 직접 보내주세요.`;
-  formNote.classList.remove('hidden');
-  location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  catch { label.textContent = EMAIL; }
+  setTimeout(() => label.textContent = '이메일 복사', 2000);
 });
 
 /* ---------- nav / menu ---------- */
@@ -425,7 +373,7 @@ const links = [...document.querySelectorAll('.nav-link')];
 const secObs = new IntersectionObserver(es => es.forEach(en => {
   if (en.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
 }), { rootMargin: '-45% 0px -50% 0px' });
-['about', 'skills', 'projects', 'experience', 'contact'].forEach(id => secObs.observe(document.getElementById(id)));
+['about', 'skills', 'projects', 'experience'].forEach(id => secObs.observe(document.getElementById(id)));
 
 /* ---------- reveal ---------- */
 const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
