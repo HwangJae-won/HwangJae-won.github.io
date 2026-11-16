@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>황재원 | AI Developer Portfolio</title>
+<meta name="description" content="문제를 재정의하는 AI 개발자 황재원의 포트폴리오">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['"IBM Plex Sans KR"', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      },
+      colors: {
+        ink: { 950: '#07090D', 900: '#0B0E14', 800: '#121722', 700: '#1A2130', 600: '#262F42', 500: '#3A455C' },
+        accent: { DEFAULT: '#3B82F6', soft: '#60A5FA', deep: '#2563EB' },
+      },
+    },
+  },
+};
+</script>
+<style>
+  :root { color-scheme: dark; }
+  body { background: #07090D; }
+  ::selection { background: #2563EB; color: #fff; }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(96,165,250,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(96,165,250,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 30%, transparent 75%);
+  }
+  .glow { background: radial-gradient(600px circle at 50% 0%, rgba(37,99,235,.22), transparent 60%); }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: .08s; }
+  .reveal[data-delay="2"] { transition-delay: .16s; }
+  .reveal[data-delay="3"] { transition-delay: .24s; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+  .card { background: linear-gradient(180deg, rgba(26,33,48,.7), rgba(18,23,34,.7)); border: 1px solid #1A2130; transition: border-color .3s, transform .3s; }
+  .card:hover { border-color: rgba(96,165,250,.45); transform: translateY(-3px); }
+  .badge { font-family: 'JetBrains Mono', monospace; font-size: .78rem; padding: .35rem .7rem; border-radius: 6px; border: 1px solid #262F42; background: #0B0E14; color: #CBD5E1; transition: all .2s; white-space: nowrap; }
+  .badge:hover { border-color: #3B82F6; color: #fff; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0; background: #60A5FA; transition: width .25s; }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .caret::after { content: '▍'; margin-left: 2px; color: #60A5FA; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .timeline-dot { box-shadow: 0 0 0 4px #07090D, 0 0 0 5px #262F42; }
+  dialog::backdrop { background: rgba(3,5,8,.78); backdrop-filter: blur(4px); }
+  dialog[open] { animation: pop .25s ease-out; }
+  @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+  .metric-bar { transition: width 1.4s cubic-bezier(.2,.7,.2,1); }
+</style>
+</head>
+<body class="font-sans text-slate-300 antialiased">
+
+<!-- NAV -->
+<header id="nav" class="fixed top-0 inset-x-0 z-40 transition-all duration-300">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="font-mono text-sm text-white tracking-tight"><span class="text-accent-soft">~/</span>jaewon</a>
+    <ul class="hidden md:flex items-center gap-8 text-sm text-slate-400">
+      <li><a class="nav-link hover:text-white" href="#about">About</a></li>
+      <li><a class="nav-link hover:text-white" href="#skills">Skills</a></li>
+      <li><a class="nav-link hover:text-white" href="#projects">Projects</a></li>
+      <li><a class="nav-link hover:text-white" href="#experience">Experience</a></li>
+      <li><a class="nav-link hover:text-white" href="#contact">Contact</a></li>
+    </ul>
+    <button id="menuBtn" class="md:hidden p-2 -mr-2 text-slate-300" aria-label="메뉴 열기"><i data-lucide="menu" class="w-5 h-5"></i></button>
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden border-t border-ink-700 bg-ink-950/95 backdrop-blur">
+    <ul class="px-5 py-4 flex flex-col gap-4 text-sm">
+      <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <div class="absolute inset-0 grid-bg"></div>
+  <div class="absolute inset-0 glow"></div>
+  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 pt-24 pb-16 w-full">
+    <p class="reveal font-mono text-xs sm:text-sm text-accent-soft mb-6 flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> AI Developer · Multi-Agent · RAG · Applied ML
+    </p>
+    <h1 class="reveal text-[2.6rem] leading-[1.15] sm:text-6xl lg:text-7xl font-semibold text-white tracking-tight" data-delay="1">
+      문제를 <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-soft to-indigo-300">재정의</span>하는<br>AI 개발자, 황재원입니다.
+    </h1>
+    <p class="reveal mt-7 max-w-2xl text-base sm:text-lg text-slate-400 leading-relaxed" data-delay="2">
+      통계학을 기반으로 LLM 멀티에이전트 시스템과 데이터 파이프라인을 설계합니다.
+      주어진 과제를 그대로 풀기보다 <span class="text-slate-200">“무엇이 진짜 문제인가”</span>를 먼저 묻고,
+      그 답을 실제로 돌아가는 시스템으로 만듭니다.
+    </p>
+    <div class="reveal mt-8 font-mono text-sm text-slate-500" data-delay="2">
+      <span class="text-accent-soft">$</span> <span id="typed" class="text-slate-300 caret"></span>
+    </div>
+    <div class="reveal mt-10 flex flex-wrap gap-3" data-delay="3">
+      <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent-deep hover:bg-accent text-white text-sm font-medium transition">
+        프로젝트 보기 <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+      </a>
+      <a href="#contact" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-ink-600 hover:border-accent-soft text-slate-200 text-sm font-medium transition">
+        연락하기 <i data-lucide="mail" class="w-4 h-4"></i>
+      </a>
+      <a href="https://github.com/HwangJae-won" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-slate-400 hover:text-white text-sm transition">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg> GitHub
+      </a>
+    </div>
+
+    <dl class="reveal mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-ink-700 rounded-xl overflow-hidden border border-ink-700 max-w-3xl" data-delay="3">
+      <div class="bg-ink-900/90 p-5"><dt class="text-xs text-slate-500">AI Co-Scientist Challenge</dt><dd class="mt-1 text-2xl font-semibold text-white">우수상</dd><dd class="text-xs text-slate-500 mt-1">272팀 중 5위</dd></div>
+      <div class="bg-ink-900/90 p-5"><dt class="text-xs text-slate-500">GAPAGO 종합 점수</dt><dd class="mt-1 text-2xl font-semibold text-white">0.61</dd><dd class="text-xs text-slate-500 mt-1">vs Claude 0.36</dd></div>
+      <div class="bg-ink-900/90 p-5"><dt class="text-xs text-slate-500">학술대회 발표</dt><dd class="mt-1 text-2xl font-semibold text-white">3건</dd><dd class="text-xs text-slate-500 mt-1">구두 1 · 포스터 2</dd></div>
+      <div class="bg-ink-900/90 p-5"><dt class="text-xs text-slate-500">현업 데이터 소스</dt><dd class="mt-1 text-2xl font-semibold text-white">4종+</dd><dd class="text-xs text-slate-500 mt-1">NEDIS · KTDB · EMS · 항공</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24 sm:py-32 border-t border-ink-800">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4 reveal">
+      <p class="font-mono text-xs text-accent-soft mb-3">01 — About</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">일하는 방식</h2>
+    </div>
+    <div class="lg:col-span-8 space-y-6 text-lg leading-relaxed text-slate-400 reveal" data-delay="1">
+      <p>
+        중앙대학교에서 응용통계학 학사와 통계학 석사(AI STAT LAB)를 마쳤고, 현재 <span class="text-slate-200">아주대학교의료원 경기도 외상체계지원단</span>에서
+        중증외상 이송 데이터 분석과 정책 지원을 맡고 있습니다.
+      </p>
+      <p>
+        매년 똑같은 분석을 엑셀로 반복하는 걸 보고, 누가 시키지 않았지만 <span class="text-slate-200">업무 자체를 AI Agent로 자동화</span>했습니다.
+        이렇게 반복되는 비효율을 발견하면 구조부터 다시 설계하는 것이 제 방식입니다.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-4 pt-4">
+        <div class="card rounded-xl p-5">
+          <i data-lucide="scan-search" class="w-5 h-5 text-accent-soft"></i>
+          <h3 class="mt-3 text-white font-medium text-base">문제 재정의</h3>
+          <p class="mt-1 text-sm text-slate-500 leading-relaxed">과제를 받으면 해결책보다 “진짜 문제”를 먼저 정의합니다.</p>
+        </div>
+        <div class="card rounded-xl p-5">
+          <i data-lucide="workflow" class="w-5 h-5 text-accent-soft"></i>
+          <h3 class="mt-3 text-white font-medium text-base">시스템 설계</h3>
+          <p class="mt-1 text-sm text-slate-500 leading-relaxed">에이전트 오케스트레이션과 품질 게이트까지 end-to-end로 설계합니다.</p>
+        </div>
+        <div class="card rounded-xl p-5">
+          <i data-lucide="sigma" class="w-5 h-5 text-accent-soft"></i>
+          <h3 class="mt-3 text-white font-medium text-base">정직한 지표</h3>
+          <p class="mt-1 text-sm text-slate-500 leading-relaxed">측정 근거가 있는 숫자만 씁니다. 통계 전공자의 기본기입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 sm:py-32 border-t border-ink-800 bg-ink-900/40">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="reveal mb-12">
+      <p class="font-mono text-xs text-accent-soft mb-3">02 — Skills</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">기술 스택</h2>
+    </div>
+    <div id="skillGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24 sm:py-32 border-t border-ink-800">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="reveal mb-12 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs text-accent-soft mb-3">03 — Projects</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">대표 프로젝트</h2>
+      </div>
+      <p class="text-sm text-slate-500">카드를 눌러 상세 내용을 확인하세요.</p>
+    </div>
+    <div id="projectGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-24 sm:py-32 border-t border-ink-800 bg-ink-900/40">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4 reveal">
+      <p class="font-mono text-xs text-accent-soft mb-3">04 — Experience</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">경력 &amp; 교육</h2>
+    </div>
+    <ol id="timeline" class="lg:col-span-8 relative border-l border-ink-600 ml-2 space-y-10"></ol>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 sm:py-32 border-t border-ink-800 relative overflow-hidden">
+  <div class="absolute inset-0 glow opacity-70"></div>
+  <div class="relative max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
+    <div class="reveal">
+      <p class="font-mono text-xs text-accent-soft mb-3">05 — Contact</p>
+      <h2 class="text-3xl sm:text-5xl font-semibold text-white tracking-tight leading-tight">함께 풀 문제가<br>있다면 연락주세요.</h2>
+      <p class="mt-5 text-slate-400">AI Agent · LLM 엔지니어링 · 데이터 사이언스 포지션을 찾고 있습니다.</p>
+
+      <div class="mt-8 flex items-center gap-2 p-2 pl-4 rounded-xl border border-ink-600 bg-ink-900 max-w-md">
+        <i data-lucide="mail" class="w-4 h-4 text-slate-500 shrink-0"></i>
+        <span id="emailText" class="font-mono text-sm text-slate-200 truncate flex-1"></span>
+        <button id="copyBtn" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-accent-deep hover:bg-accent text-white text-xs font-medium transition shrink-0">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i><span>복사</span>
+        </button>
+      </div>
+
+      <div class="mt-6 flex gap-3">
+        <a href="https://github.com/HwangJae-won" target="_blank" rel="noopener" aria-label="GitHub" class="w-11 h-11 grid place-items-center rounded-lg border border-ink-600 hover:border-accent-soft hover:text-white transition"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
+        <a id="mailIcon" href="#" aria-label="Email" class="w-11 h-11 grid place-items-center rounded-lg border border-ink-600 hover:border-accent-soft hover:text-white transition"><i data-lucide="at-sign" class="w-5 h-5"></i></a>
+      </div>
+    </div>
+
+    <form id="msgForm" class="reveal card rounded-2xl p-6 sm:p-8 space-y-4 hover:transform-none" data-delay="1">
+      <h3 class="text-white font-medium">메시지 남기기</h3>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="block"><span class="text-xs text-slate-500">이름 / 회사</span>
+          <input name="name" required class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white" placeholder="홍길동 / OO기업"></label>
+        <label class="block"><span class="text-xs text-slate-500">회신 받을 이메일</span>
+          <input name="from" type="email" required class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white" placeholder="you@company.com"></label>
+      </div>
+      <label class="block"><span class="text-xs text-slate-500">메시지</span>
+        <textarea name="msg" required rows="5" class="mt-1.5 w-full rounded-lg bg-ink-950 border border-ink-600 focus:border-accent focus:outline-none px-3 py-2.5 text-sm text-white resize-none" placeholder="포지션, 협업 제안 등 자유롭게 남겨주세요."></textarea></label>
+      <button class="w-full inline-flex justify-center items-center gap-2 px-5 py-3 rounded-lg bg-white text-ink-950 hover:bg-slate-200 text-sm font-semibold transition">
+        메일로 보내기 <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+      <p id="formNote" class="text-xs text-slate-500 hidden"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-ink-800 py-8">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row gap-2 justify-between text-xs text-slate-600 font-mono">
+    <span>© 2026 Hwang Jaewon</span>
+    <span>Built with HTML · Tailwind · Lucide</span>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<dialog id="modal" class="w-[min(720px,92vw)] max-h-[88vh] rounded-2xl bg-ink-900 border border-ink-600 text-slate-300 p-0 overflow-hidden">
+  <div class="max-h-[88vh] overflow-y-auto">
+    <div class="sticky top-0 flex items-start justify-between gap-4 p-6 sm:p-8 pb-4 bg-ink-900/95 backdrop-blur border-b border-ink-700">
+      <div>
+        <p id="mTag" class="font-mono text-xs text-accent-soft"></p>
+        <h3 id="mTitle" class="mt-1 text-xl sm:text-2xl font-semibold text-white"></h3>
+        <p id="mPeriod" class="mt-1 text-sm text-slate-500"></p>
+      </div>
+      <button id="mClose" class="p-2 -mr-2 rounded-lg hover:bg-ink-700" aria-label="닫기"><i data-lucide="x" class="w-5 h-5"></i></button>
+    </div>
+    <div id="mBody" class="p-6 sm:p-8 pt-6 space-y-7"></div>
+  </div>
+</dialog>
+
+<script>
+const EMAIL = 'jaewon05270615@gmail.com';
+
+const skills = [
+  { icon: 'bot', title: 'LLM & Agents', items: ['LangGraph', 'LangChain', 'Multi-Agent', 'RAG', 'LLM-as-Judge', 'Azure OpenAI', 'AWS Bedrock', 'Groq'] },
+  { icon: 'brain-circuit', title: 'ML / DL', items: ['scikit-learn', 'GNN (GROVER)', 'Multi-label Classification', 'Reranker', 'SPECTER2', 'Embedding'] },
+  { icon: 'database', title: 'Data Engineering', items: ['Python', 'pandas', 'ETL Pipeline', 'SQL', 'NEDIS', 'KTDB', 'GIS'] },
+  { icon: 'server', title: 'Backend & Stats', items: ['FastAPI', 'Render', 'Git / GitHub', 'R', 'matplotlib', '통계 모델링'] },
+];
+
+const projects = [
+  {
+    tag: 'Multi-Agent · Research AI', icon: 'network',
+    title: 'GAPAGO',
+    subtitle: '연구 GAP 자동 분석 멀티에이전트 시스템',
+    period: '2025.12 – 2026.04 · 4인 팀 (파이프라인 설계 담당)',
+    award: '🏆 2026 AI Co-Scientist Challenge Korea Track 2 우수상 (272팀 중 5위)',
+    summary: '연구 주제를 입력하면 논문을 수집해 한계점을 추출·평가하고, 아직 풀리지 않은 연구 GAP을 추론하는 LangGraph 기반 시스템.',
+    stack: ['LangGraph', 'FastAPI', 'ArxivLoader', 'SPECTER2', 'BGE Reranker', 'Tavily', 'Render'],
+    metric: { label: 'LLM-as-Judge 종합 점수', bars: [['GAPAGO', .61], ['Claude', .36], ['Gemini', .32], ['ChatGPT', .20]] },
+    sections: [
+      ['문제 정의', ['범용 LLM은 논문 한계점을 “그럴듯하게” 지어내는 경향이 있음 → 근거 기반 한계점 추출이 핵심 과제라고 재정의']],
+      ['내 역할', ['전체 파이프라인 설계', 'Orchestrator · Critic · 한계점 추출(Limitation Extraction) 에이전트 직접 구현', '무한 루프 및 논문 검색 state 버그 해결']],
+      ['아키텍처', ['Orchestrator + 에이전트 7개: Query Analysis → Paper Retrieval → Limitation Extraction → Limitation Evaluation → Recency Check → GAP Inference → Critic', '2-Track 한계점 추출: ① 저자가 명시한 한계 섹션 ② Method·Experiment 섹션에서 구조적 추론', 'arXiv 전문(full-text) 연동, GPU 사용 시 SPECTER2 + BGE Reranker v2-m3 / CPU 모드는 MiniLM 경량 리랭커로 전환']],
+      ['성과', ['종합 점수 0.61 — Claude 0.36, Gemini 0.32, ChatGPT 0.20 대비 최고 (답변 생성 모델과 다른 LLM이 평가, 쿼리 5개)', '272팀 중 5위, 우수상 수상']],
+    ],
+    links: [['GitHub', 'https://github.com/HwangJae-won/gapago']],
+  },
+  {
+    tag: 'AI Agent · Healthcare Data', icon: 'activity',
+    title: '외상 데이터 분석 자동화 Agent',
+    subtitle: '현업 의료 데이터 분석 업무의 AI Agent 자동화',
+    period: '2025.09 – 2026.08 · 개인 주도 (아주대학교의료원)',
+    award: null,
+    summary: '매년 같은 분석을 엑셀로 반복하던 경기도 중증외상 보고서 업무를, 스킬 단위로 분해해 AI Agent가 수행하도록 자동화.',
+    stack: ['Python', 'pandas', 'AI Agent', 'Knowledge Base', 'NEDIS', 'KTDB', '소방 EMS'],
+    metric: null,
+    sections: [
+      ['문제 정의', ['지시받은 과제가 아니라 본인 필요에서 출발 — 매년 나가는 보고서가 매번 같은 분석인데 수작업으로 반복되고 있었음']],
+      ['내 역할', ['반복 업무를 Python 스킬 단위로 분해', '에이전트 오케스트레이션과 품질 게이트(Quality Gate) 설계', '업무 기준·도메인 규칙을 담은 Knowledge Base 구축']],
+      ['데이터 파이프라인', ['NEDIS · KTDB · 소방 EMS · 항공이송 등 기관·연도별로 다른 공공 데이터를 통합', '도메인 지식 기반 이상치 탐지', '소방 EMS ETL 리팩터링: 단계별 함수 분리, argparse·--force 옵션으로 비개발 동료도 재실행 가능하게 구성']],
+      ['결과물', ['시군별 이송 경로 small multiples, 닥터헬기 이송 단계별(HT1–HT6) 타임라인 등 정책 보고용 시각화', '완성된 Agent를 동료에게 공유해 실사용']],
+    ],
+    links: [],
+  },
+  {
+    tag: 'ML Research · Graph Neural Net', icon: 'atom',
+    title: '분자독성 예측 모델',
+    subtitle: 'GNN 기반 다중 레이블 화학물질 독성 예측 (석사 연구)',
+    period: '석사 과정 · 환경부 국책과제 수행',
+    award: '📄 학술대회 발표 3건 (2023 데이터마이닝학회 구두발표 1저자 외)',
+    summary: '환경부 국책과제 「분자독성 네트워크 기반 환경성질환 예측모델 개발」의 일환으로, 분자 구조로부터 여러 독성을 동시에 예측하는 모델을 연구.',
+    stack: ['GROVER', 'GNN', 'MLSOL', 'Multi-label', 'Oversampling', 'Python'],
+    metric: null,
+    sections: [
+      ['문제 정의', ['독성 레이블은 심하게 불균형 → 모델 구조보다 “소수 레이블을 어떻게 학습시킬 것인가”가 핵심 문제']],
+      ['접근', ['사전학습 GNN(GROVER) 분자 표현 + 다중 레이블 오버샘플링(MLSOL) 결합', '42개 조합을 체계적으로 실험해 오버샘플링 비율 최적화']],
+      ['발표', ['2023 한국데이터마이닝학회 구두발표 — GNN 기반 오버샘플링 비율 최적화 (1저자)', '2023 한국통계학회 포스터 — 동일 주제 (1저자)', '2023 한국통계학회 포스터 — 분자 위상정보 기반 표현학습 (2저자)']],
+    ],
+    links: [],
+  },
+];
+
+const timeline = [
+  { period: '2026.02 – 현재', title: '아주대학교의료원 경기도 외상체계지원단', role: '주임연구원 (계약)', desc: '중증외상 이송 데이터 분석, 손상 지도화, 정책 보고서 작성, 공공 의료 데이터 Python 파이프라인 구축 및 AI Agent 자동화. (2025.09–2025.12 1차 계약)', current: true },
+  { period: '2025.12 – 2026.04', title: 'AI Co-Scientist Challenge Korea', role: 'Track 2 (AI Agent) 우수상 · 5위', desc: '과학기술정보통신부 주최 · 한국연구재단 주관. 팀 코딩맹수로 GAPAGO 개발.' },
+  { period: '2024.05 – 2024.09', title: '물류 도메인 RAG 챗봇 PoC', role: 'LLM 개발 (1인 개발 · 보조 2인)', desc: '물류 도메인 문서 기반 RAG 챗봇 PoC. QA 500문항 자체 평가(BERTScore 기준)에서 MVP 대비 +17%p.' },
+  { period: '석사', title: '중앙대학교 통계학 석사', role: 'AI STAT LAB', desc: '기계학습 기반 화학물질 독성 예측 모델링 연구, 환경부 국책과제 수행, 학술대회 발표 3건.' },
+  { period: '2018 – 2021', title: '중앙대학교 응용통계학과 학사', role: '총학생회 전략정책국장', desc: '일취월장 장학금 수혜. 총학생회에서 행사 기획·운영 담당.' },
+];
+
+/* ---------- render ---------- */
+document.getElementById('skillGrid').innerHTML = skills.map((s, i) => `
+  <div class="reveal card rounded-xl p-6" data-delay="${i % 4}">
+    <div class="flex items-center gap-2.5 mb-4">
+      <span class="w-8 h-8 grid place-items-center rounded-lg bg-accent-deep/15 text-accent-soft"><i data-lucide="${s.icon}" class="w-4 h-4"></i></span>
+      <h3 class="text-white font-medium">${s.title}</h3>
+    </div>
+    <div class="flex flex-wrap gap-2">${s.items.map(t => `<span class="badge">${t}</span>`).join('')}</div>
+  </div>`).join('');
+
+document.getElementById('projectGrid').innerHTML = projects.map((p, i) => `
+  <article class="reveal card rounded-2xl p-6 flex flex-col cursor-pointer" data-delay="${i}" data-idx="${i}" tabindex="0">
+    <div class="flex items-center justify-between">
+      <span class="w-10 h-10 grid place-items-center rounded-xl bg-accent-deep/15 text-accent-soft"><i data-lucide="${p.icon}" class="w-5 h-5"></i></span>
+      <span class="font-mono text-[11px] text-slate-500">0${i + 1}</span>
+    </div>
+    <p class="mt-5 font-mono text-[11px] text-accent-soft">${p.tag}</p>
+    <h3 class="mt-1.5 text-xl font-semibold text-white">${p.title}</h3>
+    <p class="text-sm text-slate-400">${p.subtitle}</p>
+    <p class="mt-4 text-sm text-slate-500 leading-relaxed flex-1">${p.summary}</p>
+    ${p.award ? `<p class="mt-4 text-xs text-amber-200/90 bg-amber-400/5 border border-amber-400/15 rounded-lg px-3 py-2">${p.award}</p>` : ''}
+    <div class="mt-5 flex flex-wrap gap-1.5">${p.stack.slice(0, 5).map(t => `<span class="badge !text-[11px] !py-1 !px-2">${t}</span>`).join('')}</div>
+    <button class="mt-6 inline-flex items-center gap-1.5 text-sm text-accent-soft hover:text-white transition self-start">
+      상세 내용 보기 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+    </button>
+  </article>`).join('');
+
+document.getElementById('timeline').innerHTML = timeline.map((t, i) => `
+  <li class="reveal pl-8 relative" data-delay="${i % 3}">
+    <span class="timeline-dot absolute -left-[7px] top-1.5 w-3 h-3 rounded-full ${t.current ? 'bg-accent' : 'bg-ink-500'}"></span>
+    <p class="font-mono text-xs ${t.current ? 'text-accent-soft' : 'text-slate-500'}">${t.period}</p>
+    <h3 class="mt-1 text-lg font-medium text-white">${t.title}</h3>
+    <p class="text-sm text-slate-400">${t.role}</p>
+    <p class="mt-2 text-sm text-slate-500 leading-relaxed max-w-xl">${t.desc}</p>
+  </li>`).join('');
+
+/* ---------- modal ---------- */
+const modal = document.getElementById('modal');
+function openProject(i) {
+  const p = projects[i];
+  mTag.textContent = p.tag; mTitle.textContent = p.title; mPeriod.textContent = p.period;
+  let html = `<p class="text-slate-300 leading-relaxed">${p.summary}</p>`;
+  if (p.award) html += `<p class="text-sm text-amber-200/90 bg-amber-400/5 border border-amber-400/15 rounded-lg px-4 py-3">${p.award}</p>`;
+  if (p.metric) html += `<div><h4 class="font-mono text-xs text-accent-soft mb-3">${p.metric.label}</h4><div class="space-y-2.5">${
+    p.metric.bars.map(([n, v], k) => `<div class="flex items-center gap-3 text-sm"><span class="w-20 shrink-0 ${k ? 'text-slate-500' : 'text-white font-medium'}">${n}</span>
+      <div class="flex-1 h-2 rounded-full bg-ink-700 overflow-hidden"><div class="metric-bar h-full rounded-full ${k ? 'bg-ink-500' : 'bg-accent'}" style="width:0" data-w="${v * 100 / .7}%"></div></div>
+      <span class="w-10 text-right font-mono ${k ? 'text-slate-500' : 'text-accent-soft'}">${v.toFixed(2)}</span></div>`).join('')}</div></div>`;
+  html += p.sections.map(([h, items]) => `<div><h4 class="font-mono text-xs text-accent-soft mb-2.5">${h}</h4><ul class="space-y-2">${
+    items.map(x => `<li class="flex gap-2.5 text-sm leading-relaxed"><span class="mt-2 w-1 h-1 rounded-full bg-slate-500 shrink-0"></span><span>${x}</span></li>`).join('')}</ul></div>`).join('');
+  html += `<div><h4 class="font-mono text-xs text-accent-soft mb-2.5">Tech Stack</h4><div class="flex flex-wrap gap-2">${p.stack.map(t => `<span class="badge">${t}</span>`).join('')}</div></div>`;
+  if (p.links.length) html += `<div class="flex gap-3">${p.links.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent-deep hover:bg-accent text-white text-sm transition"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>${n}</a>`).join('')}</div>`;
+  mBody.innerHTML = html;
+  lucide.createIcons();
+  modal.showModal();
+  requestAnimationFrame(() => setTimeout(() => mBody.querySelectorAll('.metric-bar').forEach(b => b.style.width = b.dataset.w), 60));
+}
+document.getElementById('projectGrid').addEventListener('click', e => { const c = e.target.closest('[data-idx]'); if (c) openProject(+c.dataset.idx); });
+document.getElementById('projectGrid').addEventListener('keydown', e => { const c = e.target.closest('[data-idx]'); if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openProject(+c.dataset.idx); } });
+mClose.onclick = () => modal.close();
+modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+
+/* ---------- contact ---------- */
+emailText.textContent = EMAIL;
+mailIcon.href = 'mailto:' + EMAIL;
+copyBtn.addEventListener('click', async () => {
+  const label = copyBtn.querySelector('span');
+  try { await navigator.clipboard.writeText(EMAIL); label.textContent = '복사됨!'; }
+  catch { const r = document.createRange(); r.selectNodeContents(emailText); getSelection().removeAllRanges(); getSelection().addRange(r); label.textContent = '선택됨'; }
+  setTimeout(() => label.textContent = '복사', 1800);
+});
+msgForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = new FormData(msgForm);
+  const subject = `[포트폴리오 문의] ${f.get('name')}`;
+  const body = `${f.get('msg')}\n\n— ${f.get('name')} (${f.get('from')})`;
+  formNote.innerHTML = `메일 앱이 열리지 않으면 <span class="text-slate-300 font-mono">${EMAIL}</span> 로 직접 보내주세요.`;
+  formNote.classList.remove('hidden');
+  location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+/* ---------- nav / menu ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => { nav.classList.toggle('bg-ink-950/80', scrollY > 20); nav.classList.toggle('backdrop-blur', scrollY > 20); nav.classList.toggle('border-b', scrollY > 20); nav.classList.toggle('border-ink-800', scrollY > 20); }, { passive: true });
+menuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+mobileMenu.querySelectorAll('a').forEach(a => a.onclick = () => mobileMenu.classList.add('hidden'));
+
+const links = [...document.querySelectorAll('.nav-link')];
+const secObs = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+['about', 'skills', 'projects', 'experience', 'contact'].forEach(id => secObs.observe(document.getElementById(id)));
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- typing ---------- */
+const phrases = ['orchestrate --agents 7 --critic on', 'pipeline run --source NEDIS,KTDB,EMS', 'redefine --problem "what really matters?"'];
+let pi = 0, ci = 0, del = false;
+(function type() {
+  const s = phrases[pi]; typed.textContent = s.slice(0, ci);
+  if (!del && ci++ === s.length) { del = true; return setTimeout(type, 1600); }
+  if (del && ci-- === 0) { del = false; pi = (pi + 1) % phrases.length; }
+  setTimeout(type, del ? 28 : 55);
+})();
+
+lucide.createIcons();
+</script>
+</body>
+</html>
